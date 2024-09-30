@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import confg.Database;
+import confg.Database; 
 import model.User;
 
 public class UserRepo implements UserDao{
