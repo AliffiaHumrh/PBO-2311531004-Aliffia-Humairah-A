@@ -119,7 +119,7 @@ public class UserFrame extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
+				User user = new User("", "");
 				user.setNama(txtName.getText());
 				user.setUsername(txtUsername.getText());
 				user.setPassword(txtPassword.getText());
@@ -136,7 +136,7 @@ public class UserFrame extends JFrame {
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
+				User user = new User("", "");
 				user.setNama(txtName.getText());
 				user.setUsername(txtUsername.getText());
 				user.setPassword(txtPassword.getText());

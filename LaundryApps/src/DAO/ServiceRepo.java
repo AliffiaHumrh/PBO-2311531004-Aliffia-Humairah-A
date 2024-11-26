@@ -35,7 +35,6 @@ public class ServiceRepo implements ServiceDao {
 			st.setString(3, service.getStatus());
 			st.executeUpdate();
 		}
-		
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +44,6 @@ public class ServiceRepo implements ServiceDao {
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}		}
-		
 	}
 
 	@Override
@@ -89,7 +87,6 @@ public class ServiceRepo implements ServiceDao {
 			e.printStackTrace();
 			}
 		}
-		
 	}
 
 	@Override
@@ -115,10 +112,5 @@ public class ServiceRepo implements ServiceDao {
 				e.printStackTrace();
 			}
 		}
-		
-		
-	
-		
 	}
-
 }

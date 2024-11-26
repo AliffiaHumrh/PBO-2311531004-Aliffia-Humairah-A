@@ -9,6 +9,4 @@ public interface CustomerDao {
 	public List<Customer> show();
 	public void delete(String id);
 	public void update(Customer customer);
-
-
 }

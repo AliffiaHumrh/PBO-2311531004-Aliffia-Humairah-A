@@ -90,8 +90,6 @@ public class CustomerRepo  implements CustomerDao {
 				e.printStackTrace();
 				}
 			}
-		
-			
 		}
 
 		@Override

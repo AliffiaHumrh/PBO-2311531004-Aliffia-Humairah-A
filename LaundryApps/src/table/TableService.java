@@ -1,19 +1,14 @@
 package table;
-
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
 import model.Service;
 import model.User;
-
 public class TableService extends AbstractTableModel {
 	List<Service> ls;
 	private String[] columnNames = {"ID", "Jenis", "Harga", "Status"};
 	public TableService(List <Service> ls) {
 		this.ls = ls;
 	}
-	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub

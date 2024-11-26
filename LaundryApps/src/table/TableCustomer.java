@@ -1,16 +1,13 @@
 package table;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-
 import model.Customer;
-
 public class TableCustomer extends AbstractTableModel{
 	List<Customer> ls;
 	private String[] columnNames = {"ID", "Name", "Address", "Hp"};
 	public TableCustomer(List <Customer> ls) {
 		this.ls = ls;
 	}
-	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
