@@ -82,7 +82,6 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String userValue = txt_username.getText();
 				String passValue = txt_password.getText();
-				System.out.println("Login successfull!" + userValue + "Pass " + passValue);
 				User user = new User(userValue, passValue);
 				
 				try {
@@ -95,7 +94,7 @@ public class LoginFrame extends JFrame {
 					}
 					else {
 						System.out.println("Invalid username or password.");
-						JOptionPane.showMessageDialog(null, "Login Gagal, Invalid username or password.");	
+						JOptionPane.showMessageDialog(null, "Login Gagal, Invalid Username or Password.");	
 					}
 				} catch (ValidationException | NullPointerException exception) {
 					System.out.println("Data tidak valid : " + exception.getMessage());

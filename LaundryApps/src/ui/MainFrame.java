@@ -5,11 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import tugas.Array;
+
+import java.awt.SystemColor;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
@@ -37,67 +43,105 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 640);
+		setBounds(100, 100, 478, 514);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(130, 177, 198));
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbl_judul = new JLabel("Laundry Apps");
-		lbl_judul.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_judul.setFont(new Font("Harrington", Font.BOLD, 20));
-		lbl_judul.setBounds(122, 28, 309, 36);
-		contentPane.add(lbl_judul);
+		JLabel lblNewLabel = new JLabel("LOUNDRY APP");
+		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
+		lblNewLabel.setBounds(42, 22, 385, 50);
+		contentPane.add(lblNewLabel);
 		
-		JButton btn_pesanan = new JButton("PESANAN");
-		btn_pesanan.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_pesanan.setBackground(new Color(198, 219, 227));
-		btn_pesanan.setBounds(46, 115, 140, 75);
-		contentPane.add(btn_pesanan);
+		JButton btnOrder = new JButton("Pesanan");
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderDetailFrame odf = new OrderDetailFrame();
+				odf.setVisible(true);
+				dispose();
+			}		
+		});
+		btnOrder.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnOrder.setBounds(10, 98, 142, 110);
+		contentPane.add(btnOrder);
 		
-		JButton btn_layanan = new JButton("LAYANAN");
-		btn_layanan.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_layanan.setBackground(new Color(198, 219, 227));
-		btn_layanan.setBounds(211, 115, 140, 75);
-		contentPane.add(btn_layanan);
+		JButton btnService = new JButton("Layanan");
+		btnService.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ServiceFrame service = new ServiceFrame();
+				service.setVisible(true);
+				dispose();
+			}
+		});
+		btnService.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnService.setBounds(162, 98, 142, 110);
+		contentPane.add(btnService);
 		
-		JButton btn_pelanggan = new JButton("PELANGGAN");
-		btn_pelanggan.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_pelanggan.setBackground(new Color(198, 219, 227));
-		btn_pelanggan.setBounds(375, 115, 140, 75);
-		contentPane.add(btn_pelanggan);
+		JButton btnCustomers = new JButton("Pelanggan");
+		btnCustomers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerFrame cts = new CustomerFrame();
+				cts.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnCustomers.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnCustomers.setBounds(314, 98, 142, 110);
+		contentPane.add(btnCustomers);
 		
-		JButton btn_pengguna = new JButton("PENGGUNA");
-		btn_pengguna.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_pengguna.setBackground(new Color(198, 219, 227));
-		btn_pengguna.setBounds(46, 265, 140, 75);
-		contentPane.add(btn_pengguna);
+		JButton btnUser = new JButton("Pengguna");
+		btnUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserFrame user = new UserFrame();
+				user.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnUser.setBounds(10, 226, 142, 110);
+		contentPane.add(btnUser);
 		
-		JButton btn_laporan = new JButton("LAPORAN");
-		btn_laporan.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_laporan.setBackground(new Color(198, 219, 227));
-		btn_laporan.setBounds(211, 265, 140, 75);
-		contentPane.add(btn_laporan);
+		JButton btnReport = new JButton("Laporan");
+		btnReport.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnReport.setBounds(162, 226, 142, 110);
+		contentPane.add(btnReport);
 		
-		JButton btn_profile = new JButton("PROFILE");
-		btn_profile.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_profile.setBackground(new Color(198, 219, 227));
-		btn_profile.setBounds(375, 265, 140, 75);
-		contentPane.add(btn_profile);
+		JButton btnProfil = new JButton("Profil");
+		btnProfil.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnProfil.setBounds(314, 226, 142, 110);
+		contentPane.add(btnProfil);
 		
-		JButton btn_keluar = new JButton("KELUAR");
-		btn_keluar.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		btn_keluar.setBackground(new Color(198, 219, 227));
-		btn_keluar.setBounds(178, 425, 206, 36);
-		contentPane.add(btn_keluar);
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginFrame login = new LoginFrame ();
+				login.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnExit.setBounds(10, 416, 446, 39);
+		contentPane.add(btnExit);
 		
-		JLabel lbl_males = new JLabel("Males aja nyuci, biar kami yang nyuciin");
-		lbl_males.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_males.setFont(new Font("STZhongsong", Font.BOLD, 13));
-		lbl_males.setBounds(132, 62, 309, 27);
-		contentPane.add(lbl_males);
+		JButton btnTugas = new JButton("Tugas");
+		btnTugas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Array arrayframe = new Array();
+				arrayframe.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnTugas.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnTugas.setBounds(10, 366, 446, 39);
+		contentPane.add(btnTugas);
 	}
-
 }
