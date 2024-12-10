@@ -6,43 +6,38 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import DAO.CustomerRepo;
 import DAO.ServiceRepo;
-import model.Customer;
 import model.Service;
-import table.TableCustomer;
 import table.TableService;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.util.List;
-
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class ServiceFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtJenis;
 	private JTextField txtHarga;
 	private JTextField txtStatus;
-	private JTable tableServices;
+	private JTextField txtJenis;
+	private JTable tableService;
 	
-	ServiceRepo srvc = new ServiceRepo();
+	ServiceRepo srv = new ServiceRepo();
 	List<Service> ls;
 	String id;
-	
 	
 	public void reset() {
 		txtJenis.setText("");
@@ -50,12 +45,11 @@ public class ServiceFrame extends JFrame {
 		txtStatus.setText("");
 	}
 	public void loadTable() {
-		ls = srvc.show();
+		ls = srv.show();
 		TableService tu = new TableService(ls);
-		tableServices.setModel(tu);;
-		tableServices.getTableHeader().setVisible(true);
+		tableService.setModel(tu);;
+		tableService.getTableHeader().setVisible(true);
 	}
-
 	/**
 	 * Launch the application.
 	 */
@@ -78,63 +72,81 @@ public class ServiceFrame extends JFrame {
 	 */
 	public ServiceFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 402, 386);
+		setBounds(100, 100, 475, 549);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBounds(10, 11, 366, 165);
-		contentPane.add(panel);
-		
-		JLabel lblNewLabel = new JLabel("Jenis");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 13));
-		lblNewLabel.setBounds(10, 11, 46, 14);
-		panel.add(lblNewLabel);
-		
 		JLabel lblHarga = new JLabel("Harga");
-		lblHarga.setFont(new Font("Calibri", Font.PLAIN, 13));
-		lblHarga.setBounds(10, 39, 46, 14);
-		panel.add(lblHarga);
-		
-		JLabel lblNewLabel_3 = new JLabel("Status");
-		lblNewLabel_3.setFont(new Font("Calibri", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(10, 70, 46, 14);
-		panel.add(lblNewLabel_3);
-		
-		txtJenis = new JTextField();
-		txtJenis.setFont(new Font("Calibri", Font.PLAIN, 13));
-		txtJenis.setColumns(10);
-		txtJenis.setBounds(81, 6, 245, 20);
-		panel.add(txtJenis);
+		lblHarga.setFont(new Font("STZhongsong", Font.BOLD, 12));
+		lblHarga.setBounds(10, 82, 92, 25);
+		contentPane.add(lblHarga);
 		
 		txtHarga = new JTextField();
-		txtHarga.setFont(new Font("Calibri", Font.PLAIN, 13));
+		txtHarga.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		txtHarga.setColumns(10);
-		txtHarga.setBounds(81, 36, 245, 20);
-		panel.add(txtHarga);
+		txtHarga.setBounds(112, 82, 314, 25);
+		contentPane.add(txtHarga);
 		
-		JButton btnSave = new JButton("SAVE");
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setFont(new Font("STZhongsong", Font.BOLD, 12));
+		lblStatus.setBounds(10, 117, 92, 25);
+		contentPane.add(lblStatus);
+		
+		txtStatus = new JTextField();
+		txtStatus.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtStatus.setColumns(10);
+		txtStatus.setBounds(112, 121, 314, 25);
+		contentPane.add(txtStatus);
+		
+		JLabel lblJenis = new JLabel("Jenis");
+		lblJenis.setFont(new Font("STZhongsong", Font.BOLD, 12));
+		lblJenis.setBounds(10, 45, 92, 25);
+		contentPane.add(lblJenis);
+		
+		txtJenis = new JTextField();
+		txtJenis.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		txtJenis.setColumns(10);
+		txtJenis.setBounds(112, 45, 314, 25);
+		contentPane.add(txtJenis);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setBackground(new Color(255, 255, 255));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Service service = new Service();
 				service.setJenis(txtJenis.getText());
 				service.setHarga(txtHarga.getText());
 				service.setStatus(txtStatus.getText());
-				srvc.save(service);
 				reset();
+				srv.save(service);
 				loadTable();
-				
 			}
 		});
-		btnSave.setFont(new Font("Calibri", Font.PLAIN, 13));
-		btnSave.setBounds(0, 131, 73, 23);
-		panel.add(btnSave);
+		btnSave.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnSave.setBounds(112, 156, 75, 25);
+		contentPane.add(btnSave);
 		
-		JButton btnUpdate = new JButton("UPDATE");
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(id != null) {
+					srv.delete(id);
+					reset();
+					loadTable();
+				}else {
+					JOptionPane.showMessageDialog(null, "Silahkan pilih data yang akan di hapus");
+				}
+			}
+		});
+		btnDelete.setBackground(new Color(255, 255, 255));
+		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnDelete.setBounds(351, 156, 75, 25);
+		contentPane.add(btnDelete);
+		
+		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Service service = new Service();
@@ -142,63 +154,51 @@ public class ServiceFrame extends JFrame {
 				service.setHarga(txtHarga.getText());
 				service.setStatus(txtStatus.getText());
 				service.setId(id);
-				srvc.update(service);
+				srv.update(service);
 				reset();
 				loadTable();
-				
 			}
 		});
-		btnUpdate.setFont(new Font("Calibri", Font.PLAIN, 13));
-		btnUpdate.setBounds(81, 131, 89, 23);
-		panel.add(btnUpdate);
-		
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(id != null) {
-					srvc.delete(id);
-					reset();
-					loadTable();
-				} else {
-					JOptionPane.showMessageDialog(null, "Silahkan pilih data yang akan di hapus");
-				}
-			}
-		});
-		btnDelete.setFont(new Font("Calibri", Font.PLAIN, 13));
-		btnDelete.setBounds(180, 131, 89, 23);
-		panel.add(btnDelete);
-		
-		JButton btnCancel = new JButton("CANCEL");
-		btnCancel.setFont(new Font("Calibri", Font.PLAIN, 13));
-		btnCancel.setBounds(279, 129, 77, 25);
-		panel.add(btnCancel);
-		
-		txtStatus = new JTextField();
-		txtStatus.setFont(new Font("Calibri", Font.PLAIN, 13));
-		txtStatus.setBounds(81, 67, 245, 20);
-		panel.add(txtStatus);
-		txtStatus.setColumns(10);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBounds(10, 187, 366, 146);
-		contentPane.add(panel_1);
+		btnUpdate.setBackground(new Color(255, 255, 255));
+		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnUpdate.setBounds(229, 156, 75, 25);
+		contentPane.add(btnUpdate);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.addMouseListener(new MouseAdapter() {
+		scrollPane.setBounds(10, 200, 441, 267);
+		scrollPane.setViewportView(tableService);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPane.add(scrollPane);
+		
+		tableService = new JTable();
+		tableService.setToolTipText("");
+		tableService.setFillsViewportHeight(true);
+		tableService.setBackground(new Color(255, 255, 255));
+		tableService.setBounds(10, 200, 416, 232);
+		scrollPane.setViewportView(tableService);
+		tableService.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				id = tableServices.getValueAt(tableServices.getSelectedRow(),0).toString();
-				txtJenis.setText(tableServices.getValueAt(tableServices.getSelectedRow(),1).toString());
-				txtHarga.setText(tableServices.getValueAt(tableServices.getSelectedRow(),2).toString());
-				txtStatus.setText(tableServices.getValueAt(tableServices.getSelectedRow(),3).toString());
-				
+				id = tableService.getValueAt(tableService.getSelectedRow(),0).toString();
+				txtJenis.setText(tableService.getValueAt(tableService.getSelectedRow(),1).toString());
+				txtHarga.setText(tableService.getValueAt(tableService.getSelectedRow(),2).toString());
+				txtStatus.setText(tableService.getValueAt(tableService.getSelectedRow(),3).toString());
 			}
 		});
-		scrollPane.setBounds(10, 11, 346, 124);
-		panel_1.add(scrollPane);
+		tableService.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		
-		tableServices = new JTable();
-		scrollPane.setViewportView(tableServices);
+		JButton btnNewButton = new JButton("Kembali");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame login = new MainFrame ();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("STZhongsong", Font.BOLD, 12));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(188, 480, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }

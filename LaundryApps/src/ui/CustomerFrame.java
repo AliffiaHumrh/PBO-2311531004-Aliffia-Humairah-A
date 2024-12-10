@@ -42,9 +42,9 @@ public class CustomerFrame extends JFrame {
 	private JTextField txtNama;
 	private JTable tableCustomers;
 	
-	CustomerRepo csmtr = new CustomerRepo();
+	public String id;
 	List<Customer> ls;
-	String id;
+	CustomerRepo csmtr = new CustomerRepo();
 	
 	public void reset() {
 		txtNama.setText("");
@@ -78,7 +78,7 @@ public class CustomerFrame extends JFrame {
 	 */
 	public CustomerFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 390, 426);
+		setBounds(100, 100, 390, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -126,10 +126,11 @@ public class CustomerFrame extends JFrame {
 		JButton btnNewButton = new JButton("SAVE");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Customer customer = new Customer();
+				Customer customer = new Customer("", "", "", "");
 				customer.setName(txtNama.getText());
 				customer.setAddress(txtAddress.getText());
 				customer.setHp(txtHp.getText());
+				customer.build();
 				csmtr.save(customer);
 				reset();
 				loadTable();
@@ -142,7 +143,7 @@ public class CustomerFrame extends JFrame {
 		JButton btnUpdate = new JButton("UPDATE");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Customer customer = new Customer();
+				Customer customer = new Customer("", "", "", "");
 				customer.setName(txtNama.getText());
 				customer.setAddress(txtAddress.getText());
 				customer.setHp(txtHp.getText());
@@ -188,6 +189,18 @@ public class CustomerFrame extends JFrame {
 		
 		tableCustomers = new JTable();
 		scrollPane.setViewportView(tableCustomers);
+		
+		JButton btnKembali = new JButton("Kembali");
+		btnKembali.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame login = new MainFrame ();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnKembali.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		btnKembali.setBounds(140, 381, 89, 23);
+		contentPane.add(btnKembali);
 		tableCustomers.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

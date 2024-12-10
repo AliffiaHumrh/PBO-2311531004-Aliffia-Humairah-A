@@ -35,12 +35,9 @@ public class CustomerRepo  implements CustomerDao {
 				st.setString(2, customer.getAddress());
 				st.setString(3, customer.getHp());
 				st.executeUpdate();
-			}
-			
-			catch(SQLException e) {
+			}catch(SQLException e) {
 				e.printStackTrace();
-			}
-			finally {
+			}finally {
 				try {
 					st.close();
 				} catch(SQLException e) {
@@ -57,11 +54,12 @@ public class CustomerRepo  implements CustomerDao {
 				Statement  st = connection.createStatement();
 				ResultSet rs = st.executeQuery(select);
 				while(rs.next()) {
-					Customer customer = new Customer();
+					Customer customer = new Customer("","","","");
 					customer.setId(rs.getString("id"));
 					customer.setName(rs.getString("name"));
 					customer.setAddress(rs.getString("address"));
 					customer.setHp(rs.getString("hp"));
+					customer.build();
 					ls.add(customer);
 				}
 			} 

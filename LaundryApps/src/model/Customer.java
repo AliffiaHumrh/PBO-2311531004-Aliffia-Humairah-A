@@ -1,7 +1,17 @@
 package model;
 
 public class Customer {
-	String id, name, address, hp;
+	private String id;
+	private String name;
+	private String address;
+	private String hp;
+	
+	public Customer(String id, String name, String address, String hp) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.hp = hp;
+	}
 
 	public String getId() {
 		return id;
@@ -33,6 +43,12 @@ public class Customer {
 
 	public void setHp(String hp) {
 		this.hp = hp;
+	}
+
+	public Customer build() {
+		return new Customer(id, name, address, hp);
+		// TODO Auto-generated method stub
+		
 	}
 
 }

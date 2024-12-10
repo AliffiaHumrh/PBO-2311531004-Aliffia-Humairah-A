@@ -16,7 +16,7 @@ public class TableCustomer extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 5;
 	}
 	public String getColumnName (int column) {
 		// TODO Auto-generated method stub

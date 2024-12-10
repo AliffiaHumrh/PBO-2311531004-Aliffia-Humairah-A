@@ -61,9 +61,9 @@ public class MainFrame extends JFrame {
 		JButton btnOrder = new JButton("Pesanan");
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OrderDetailFrame odf = new OrderDetailFrame();
-				odf.setVisible(true);
-				dispose();
+					OrderDetailFrame odf = new OrderDetailFrame();
+					odf.setVisible(true);
+					dispose();
 			}		
 		});
 		btnOrder.setFont(new Font("Tahoma", Font.PLAIN, 20));
