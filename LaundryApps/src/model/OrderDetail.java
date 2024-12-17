@@ -50,5 +50,4 @@ public class OrderDetail {
 	public void setTotal(String total) {
 		this.total = total;
 	}
-
 }

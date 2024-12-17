@@ -31,11 +31,23 @@ public class MainFrame extends JFrame {
 				try {
 					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
+					frame.loadTableService();
+					frame.loadTableDetail();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+
+	protected void loadTableDetail() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	protected void loadTableService() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**

@@ -6,12 +6,15 @@ import javax.swing.table.AbstractTableModel;
 import model.OrderDetail;
 
 public class TableOrderDetail extends AbstractTableModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	List<OrderDetail> ls;
 	private String[] columnNames = {"ID", "Order ID", "Service ID", "Harga", "Jumlah", "Total"};
 	public TableOrderDetail(List<OrderDetail> ls) {
 		this.ls = ls;
 	}
-	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub

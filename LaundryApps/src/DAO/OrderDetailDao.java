@@ -10,5 +10,4 @@ public interface OrderDetailDao {
 	public void delete(String id);
 	public void update(OrderDetail od);
 	public String total(String order_id);
-
 }

@@ -29,10 +29,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
 public class CustomerFrame extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -91,17 +89,17 @@ public class CustomerFrame extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nama");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 13));
+		lblNewLabel.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Alamat");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 13));
+		lblNewLabel_1.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(10, 39, 46, 14);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nomor HP");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.PLAIN, 13));
+		lblNewLabel_2.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		lblNewLabel_2.setBounds(10, 68, 75, 14);
 		panel.add(lblNewLabel_2);
 		
@@ -136,7 +134,7 @@ public class CustomerFrame extends JFrame {
 				loadTable();
 			}
 		});
-		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 13));
+		btnNewButton.setFont(new Font("STZhongsong", Font.BOLD, 10));
 		btnNewButton.setBounds(0, 126, 75, 23);
 		panel.add(btnNewButton);
 		
@@ -153,7 +151,7 @@ public class CustomerFrame extends JFrame {
 				loadTable();
 			}
 		});
-		btnUpdate.setFont(new Font("Calibri", Font.PLAIN, 13));
+		btnUpdate.setFont(new Font("STZhongsong", Font.BOLD, 10));
 		btnUpdate.setBounds(85, 126, 89, 23);
 		panel.add(btnUpdate);
 		
@@ -169,12 +167,12 @@ public class CustomerFrame extends JFrame {
 				}
 			}
 		});
-		btnDelete.setFont(new Font("Calibri", Font.PLAIN, 13));
+		btnDelete.setFont(new Font("STZhongsong", Font.BOLD, 10));
 		btnDelete.setBounds(177, 126, 89, 23);
 		panel.add(btnDelete);
 		
 		JButton btnCancel = new JButton("CANCEL");
-		btnCancel.setFont(new Font("Calibri", Font.PLAIN, 13));
+		btnCancel.setFont(new Font("STZhongsong", Font.BOLD, 10));
 		btnCancel.setBounds(276, 126, 78, 23);
 		panel.add(btnCancel);
 		
@@ -189,6 +187,15 @@ public class CustomerFrame extends JFrame {
 		
 		tableCustomers = new JTable();
 		scrollPane.setViewportView(tableCustomers);
+		tableCustomers.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				id = tableCustomers.getValueAt(tableCustomers.getSelectedRow(),0).toString();
+				txtNama.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),1).toString());
+				txtAddress.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),2).toString());
+				txtHp.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),3).toString());
+			}
+		});
 		
 		JButton btnKembali = new JButton("Kembali");
 		btnKembali.addActionListener(new ActionListener() {
@@ -201,14 +208,5 @@ public class CustomerFrame extends JFrame {
 		btnKembali.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		btnKembali.setBounds(140, 381, 89, 23);
 		contentPane.add(btnKembali);
-		tableCustomers.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				id = tableCustomers.getValueAt(tableCustomers.getSelectedRow(),0).toString();
-				txtNama.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),1).toString());
-				txtAddress.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),2).toString());
-				txtHp.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),3).toString());
-			}
-		});
 	}
 }
