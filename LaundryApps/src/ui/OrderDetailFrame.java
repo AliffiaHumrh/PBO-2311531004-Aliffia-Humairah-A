@@ -6,14 +6,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.OrderDetailRepo;
 import DAO.ServiceRepo;
+import model.OrderDetail;
 import model.Service;
+import table.TableOrderDetail;
 import table.TableService;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -22,6 +28,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +64,26 @@ public class OrderDetailFrame extends JFrame {
 	private double total(double harga, double qty) {
 		return harga * qty;
 	}
-
+	private double hargabagi (double harga, double quantity) {
+		return harga / quantity;
+	}
+	OrderDetailRepo odf = new OrderDetailRepo();
+	List<OrderDetail> ls_1;
+	
+	public void loadDataOrderDetail() {
+	    ls_1 = odf.show(""); // Ambil data dari repo
+	    TableOrderDetail tu = new TableOrderDetail(ls_1); // Pastikan ini menggunakan data yang benar
+	   	}
+	public void reset () {
+		txtHarga.setText("");
+		txtJumlah.setText("");
+		txtTotal.setText("");
+	}
+	
+	LocalDate today = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String formattedDate = today.format(formatter);
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -211,8 +238,20 @@ public class OrderDetailFrame extends JFrame {
 		txtJumlah.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				txtTotal.setText(""+Double.parseDouble(txtHarga.getText()) * Double.parseDouble(txtJumlah.getText()));
-			}
+				try {
+		            if (txtJumlah.getText().isEmpty() || txtHarga.getText().isEmpty()) {
+		                txtTotal.setText("");
+		                txtJumlah.setText("");
+		            } else {
+		                double harga = Double.parseDouble(txtHarga.getText());
+		                double quantity = Double.parseDouble(txtJumlah.getText());
+		                txtTotal.setText("" + total(harga, quantity));
+		                txtJumlah.setText("" + total(harga, quantity));
+		            }
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(null, "Please enter valid numbers in the Harga and Jumlah fields.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+		        }
+		    }
 		});
 		txtJumlah.setColumns(10);
 		txtJumlah.setBounds(10, 84, 110, 20);
@@ -224,21 +263,63 @@ public class OrderDetailFrame extends JFrame {
 		panel_1.add(txtTotal);
 		
 		JButton btnSimpan = new JButton("Simpan");
+		btnSimpan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderDetail orderdtl = new OrderDetail();
+				orderdtl.setJumlah(txtJumlah.getText());
+				orderdtl.setTotal(txtTotal.getText());
+				reset();
+				odf.save(orderdtl);
+				loadTable();
+				loadDataOrderDetail();
+			}
+		});
 		btnSimpan.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		btnSimpan.setBounds(154, 11, 89, 23);
 		panel_1.add(btnSimpan);
 		
 		JButton btnUbah = new JButton("Ubah");
+		btnUbah.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderDetail orderdtl = new OrderDetail();
+				orderdtl.setJumlah(txtJumlah.getText());
+				orderdtl.setTotal(txtTotal.getText());
+				orderdtl.setId(id);
+				odf.update(orderdtl);
+				reset();
+				loadTable();
+				loadDataOrderDetail();
+			}
+		});
 		btnUbah.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		btnUbah.setBounds(154, 55, 89, 23);
 		panel_1.add(btnUbah);
 		
 		JButton btnHapus = new JButton("Hapus");
+		btnHapus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(id != null) {
+					odf.delete(id);
+					reset();
+					loadTable();
+					loadDataOrderDetail();
+				}else {
+					JOptionPane.showMessageDialog(null, "Silahkan pilih data yang akan di hapus");
+				}
+			}
+		});
 		btnHapus.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		btnHapus.setBounds(154, 99, 89, 23);
 		panel_1.add(btnHapus);
 		
 		JButton btnBatal = new JButton("Batal");
+		btnBatal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame main = new MainFrame();
+				main.setVisible(true);
+				dispose();
+			}
+		});
 		btnBatal.setFont(new Font("STZhongsong", Font.BOLD, 12));
 		btnBatal.setBounds(154, 145, 89, 23);
 		panel_1.add(btnBatal);
