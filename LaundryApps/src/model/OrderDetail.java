@@ -34,7 +34,6 @@ public class OrderDetail {
 	public void setHarga(String harga) {
 		this.harga = harga;
 	}
-
 	public String getJumlah() {
 		return jumlah;
 	}

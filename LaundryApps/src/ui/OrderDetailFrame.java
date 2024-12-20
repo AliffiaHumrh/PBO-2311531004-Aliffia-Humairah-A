@@ -253,6 +253,7 @@ public class OrderDetailFrame extends JFrame {
 		        }
 		    }
 		});
+		
 		txtJumlah.setColumns(10);
 		txtJumlah.setBounds(10, 84, 110, 20);
 		panel_1.add(txtJumlah);

@@ -9,6 +9,7 @@ public class TableOrderDetail extends AbstractTableModel {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	List<OrderDetail> ls;
 	private String[] columnNames = {"ID", "Order ID", "Service ID", "Harga", "Jumlah", "Total"};

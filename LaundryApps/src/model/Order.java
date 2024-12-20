@@ -19,7 +19,6 @@ public String getId_custumer() {
 public void setId_custumer(String id_custumer) {
 	this.id_custumer = id_custumer;
 }
-
 public String getId_service() {
 	return id_service;
 }
