@@ -75,4 +75,19 @@ public String getStatus_pembayaran() {
 public void setStatus_pembayaran(String status_pembayaran) {
 	this.status_pembayaran = status_pembayaran;
 }
+
+public String getId_pelanggan() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setId_pelanggan(String id_pelanggan) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void setTanggal_pengambilan(String tgl_kbl) {
+	// TODO Auto-generated method stub
+	
+}
 }

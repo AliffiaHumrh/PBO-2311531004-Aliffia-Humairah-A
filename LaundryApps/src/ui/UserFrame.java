@@ -74,7 +74,7 @@ public class UserFrame extends JFrame {
 	 */
 	public UserFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 454, 534);
+		setBounds(100, 100, 454, 545);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -194,5 +194,17 @@ public class UserFrame extends JFrame {
 			}
 		});
 		tableUsers.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		
+JButton btnKembali = new JButton("Kembali");
+btnKembali.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		MainFrame login = new MainFrame ();
+		login.setVisible(true);
+		dispose();
 	}
+});
+btnKembali.setFont(new Font("Times New Roman", Font.BOLD, 12));
+btnKembali.setBounds(173, 478, 89, 23);
+contentPane.add(btnKembali);
+}
 }

@@ -78,7 +78,7 @@ public class CustomerFrame extends JFrame {
 	 */
 	public CustomerFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 390, 426);
+		setBounds(100, 100, 390, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -197,5 +197,16 @@ public class CustomerFrame extends JFrame {
 				txtHp.setText(tableCustomers.getValueAt(tableCustomers.getSelectedRow(),3).toString());
 			}
 		});
+		JButton btnKembali = new JButton("Kembali");
+		btnKembali.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame login = new MainFrame ();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnKembali.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		btnKembali.setBounds(140, 381, 89, 23);
+		contentPane.add(btnKembali);
 	}
 }
