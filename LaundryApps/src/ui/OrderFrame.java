@@ -109,10 +109,10 @@ public class OrderFrame extends JFrame{
 	                ex.printStackTrace();
 	            }
 	            
-	       //     odf.setStatus(status);
-	         //   odf.setStatusBayar(status_bayar);
-	           // odf.setTotal(total);
-	           // odf.setVisible(true);
+	              odf.setStatus(status);
+	              odf.setStatusBayar(status_bayar);
+	              odf.setTotal(total);
+	              odf.setVisible(true);
 	            dispose();
 			}
 		});
