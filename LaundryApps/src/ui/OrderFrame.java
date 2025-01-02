@@ -1,4 +1,3 @@
-
 package ui;
 
 import java.awt.EventQueue;
@@ -86,8 +85,8 @@ public class OrderFrame extends JFrame{
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				odf.setVisible(true);
-				odf.loadDataOrderDetail();
-				odf.loadTable();
+				odf.loadTableDetail();
+				odf.loadTableDetail();
 				dispose();
 			}
 		});
@@ -97,9 +96,9 @@ public class OrderFrame extends JFrame{
 		JButton btnEditDetail = new JButton("Edit/Detail");
 		btnEditDetail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				odf.loadDataOrderDetail();
-				odf.loadTable();
-				odf.setOrderId(order_id);
+				odf.loadTableDetail();
+				odf.loadTableDetail();
+				odf.setOrderID(order_id);
 				odf.onDataReceived(id_cust, getCustomerNameById(id_cust));
 				
 				SimpleDateFormat sdf_tanggal = new SimpleDateFormat("yyyy-MM-dd");
